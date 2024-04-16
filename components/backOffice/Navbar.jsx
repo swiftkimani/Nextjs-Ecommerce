@@ -5,7 +5,7 @@ export default function Navbar() {
     <div
       className="flex items-cneter justify-between bg-slate-800    
     text-slate-50 h-16  px-8 py-4 fixed top-0 w-screen left-60 "
-    >
+    > 
       {/* Icons */}
 
       <button>
