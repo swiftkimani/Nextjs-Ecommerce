@@ -1,18 +1,26 @@
-import Heading from "@/components/backOffice/Heading"
-import LargeCards from "@/components/backOffice/LargeCards"
+import DashboardCharts from "@/components/backOffice/DashboardCharts";
+import Heading from "@/components/backOffice/Heading";
+import LargeCards from "@/components/backOffice/LargeCards";
+import SmallCards from "@/components/backOffice/SmallCards";
 
 export default function page() {
   return (
     <div>
-      <Heading title='Dashboard Overview' />
+      <Heading title="Dashboard Overview" />
 
       {/* Large card */}
-      
-      <LargeCards/>
-      
+
+      <LargeCards />
+
       {/* Small card */}
+
+      <SmallCards />
+
       {/* Charts */}
+
+      <DashboardCharts />
+      
       {/* Recent orders table */}
     </div>
-  )
+  );
 }
