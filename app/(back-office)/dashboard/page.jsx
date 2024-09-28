@@ -11,6 +11,8 @@ export default function page() {
 
       {/* Large card */}
 
+      
+
       <LargeCards />
 
       {/* Small card */}
