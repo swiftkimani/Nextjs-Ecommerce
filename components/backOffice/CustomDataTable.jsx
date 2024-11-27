@@ -5,7 +5,9 @@ import data from "../../data.json";
 export default function CustomDataTable() {
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
+
   const startIndex = (currentPage - 1) * pageSize;
+  
   const endIndex = startIndex + pageSize;
   const currentDisplayedData = data.slice(startIndex, endIndex);
   const totalPages = Math.ceil(data.length / pageSize);
