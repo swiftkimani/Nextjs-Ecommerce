@@ -96,7 +96,7 @@ export default function WeeklySalesChart() {
           <ul className="flex flex-wrap -mb-px">
             {tabs.map((tab, i) => {
               return (
-                <li key={i} class="me-2">
+                <li key={i} className="me-2">
                   <button
                     onClick={() => setChartToDisplay(tab.type)}
                     className={
