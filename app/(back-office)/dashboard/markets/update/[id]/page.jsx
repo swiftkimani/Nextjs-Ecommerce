@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function UpdateCoupon() {
+export default function UpdateMarket() {
   return (
     <div>
-      <h2>Update Category</h2>
+      <h2>Update Market</h2>
     </div>
   );
 }

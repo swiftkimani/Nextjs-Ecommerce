@@ -94,17 +94,12 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
       href: "/dashboard/categories",
     },
     {
-      title: "Attributes",
-      icon: SendToBack,
-      href: "/dashboard/attributes",
-    },
-    {
       title: "Coupons",
       icon: ScanSearch,
       href: "/dashboard/coupons",
     },
     {
-      title: "Store Sliders",
+      title: "Store Banners",
       icon: MonitorPlay,
       href: "/dashboard/sliders",
     },
@@ -191,7 +186,7 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
           );
         })}
         <div className="px-6 py-2">
-          <button className="flex items-center space-x-3 px-6 py-3 bg-blue-600 rounded-md">
+          <button className="flex items-center space-x-3 px-6 py-3 bg-blue-600 rounded-md mt-4 sm:mt-6 text-sm font-medium text-center text-white focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
             <LogOut />
             <span>LogOut</span>
           </button>

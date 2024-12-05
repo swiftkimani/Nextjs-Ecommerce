@@ -12,6 +12,29 @@ import { useForm } from 'react-hook-form';
 
 export default function NewCategory() {
 
+  const markets = [
+    {
+      id: 1,
+      title: "headphones Market",
+    },
+    {
+      id: 2,
+      title: "PowerBanks Market",
+    },
+    {
+      id: 3,
+      title: "Sunglasses Market",
+    },
+    {
+      id: 4,
+      title: "electronics Market",
+    },
+    {
+      id: 5,
+      title: "Chargers Market",
+    },
+  ];
+
   const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
@@ -45,11 +68,13 @@ export default function NewCategory() {
             className="w-full"
           />
           <SelectInput
-            label="Select Market"
-            name="title"
+            label="Select Markets"
+            name="marketIds"
             register={register}
             errors={errors}
             className="w-full"
+            options={markets}
+            multiple={true}
           />
           <TextareaInput
             label="Category Description"

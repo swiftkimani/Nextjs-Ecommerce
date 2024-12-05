@@ -20,7 +20,7 @@ export default function TextareaInput({
           name={name}
           id={name}
           rows={3}
-          className="block w-full rounded-md border-0 py-2 text-slate-800 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:placeholder:text-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-transparent"
+          className="block w-full rounded-md border-0 py-2 text-slate-800 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-slate-500 dark:placeholder:text-gray-100 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-transparent"
           defaultValue={""}
           placeholder={`Type the ${label.toLowerCase()}`}
         />

@@ -1,9 +1,23 @@
+import Heading from "@/components/backOffice/Heading";
+import PageHeader from "@/components/backOffice/PageHeader";
+import TableActions from "@/components/backOffice/TableActions";
 import React from "react";
 
 export default function page() {
   return (
     <div>
-      <h2>banners</h2>
+      <PageHeader
+        heading="Banners"
+        href="/dashboard/banners/new"
+        linkTitle="Add Banner"
+      />
+      {/* Table Actions */}
+
+      <TableActions />
+
+      <div className="py-8">
+        <h2>Table</h2>
+      </div>
     </div>
   );
 }
