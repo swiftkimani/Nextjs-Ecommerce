@@ -14,13 +14,13 @@ export default function CustomDataTable() {
   const itemSatrtIndex = startIndex + 1;
   const itemEndIndex = Math.min(startIndex + pageSize, data.length);
   return (
-    <div className="">
-      <h2 className="text-xl font-bold mb-4">Recent Orders</h2>
+    <div className="mt-8">
+      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50 px-2">Recent Orders</h2>
 
       {/* Table */}
 
-      <div className="p-8">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="p-8 ">
+        <div className="relative overflow-x-scroll shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -104,11 +104,11 @@ export default function CustomDataTable() {
             aria-label="Table navigation">
             <span className="text-xl font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
               Showing{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold text-blue-600 dark:text-white">
                 {itemSatrtIndex}-{itemEndIndex}
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold text-blue-600 dark:text-white">
                 {data.length}
               </span>
             </span>
@@ -129,7 +129,7 @@ export default function CustomDataTable() {
                       disabled={currentPage == index + 1}
                       className={
                         currentPage == index + 1
-                          ? "flex items-center justify-center px-3 h-10 leading-tight text-gray-50 bg-blue-600 border border-blue-300 hover:bg-blue-800 hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                          ? "flex items-center justify-center px-3 h-10 leading-tight text-slate-800 bg-blue-600 border border-blue-300 hover:bg-blue-800 hover:text-slate-800 dark:text-slate-80 dark:bg-slate-50 dark:border-gray-700 dark:hover:bg-slate-700 dark:hover:text-white"
                           : "flex items-center justify-center px-3 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                       }>
                       {index + 1}

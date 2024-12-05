@@ -25,7 +25,7 @@ export default function page() {
       
       {/* Recent orders table */}
 
-      <CustomDataTable />
+      {/* <CustomDataTable /> */}
       
     </div>
   );
