@@ -23,20 +23,20 @@ export default function ImageInput({
           <button
             onClick={() => setImageUrl("")}
             type="button"
-            className="flex space-x-2 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center">
+            className="mt-4 flex items-center space-x-2 rounded-2xl bg-stone-950 px-4 py-2.5 text-sm font-medium text-stone-50 transition hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200">
             <Pencil className="w-5 h-5" />
             <span>Change Image</span>
           </button>
         )}
       </div>
-      <div className="dark:ring-white ring-black ring-1 rounded full">
+      <div className="overflow-hidden rounded-[1.25rem] border border-stone-200 bg-stone-50 ring-1 ring-stone-200 dark:border-stone-800 dark:bg-stone-900/70 dark:ring-stone-800">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt="Item image"
             width={1000}
             height={667}
-            className="w-full h-64 object-contain"
+            className="h-64 w-full object-contain bg-white p-3 dark:bg-stone-950/60"
           />
         ) : (
           <UploadDropzone

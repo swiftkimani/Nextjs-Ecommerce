@@ -23,24 +23,24 @@ export default function NewFarmer() {
   async function onSubmit(data) {
     const code = generateUserCode( "SHT", data.name);
     data.code = code;
-    makePostRequest(setLoading, "api/farmers", data, "Farmer", reset);
+    makePostRequest(setLoading, "api/farmers", data, "Supplier", reset);
   }
   return (
     <div>
-      <FormHeader title="New Farmer" />
+      <FormHeader title="New Supplier" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 ">
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Farmer's Full Name"
+            label="Supplier Name"
             name="name"
             register={register}
             errors={errors}
             className="w-full"
           />
           <TextInput
-            label="Farmer's Phone"
+            label="Supplier Phone"
             name="phone"
             type='tel'
             register={register}
@@ -48,7 +48,7 @@ export default function NewFarmer() {
             className="w-full"
           />
           <TextInput
-            label="Farmer's Email address"
+            label="Supplier Email Address"
             name="email"
             type='email'
             register={register}
@@ -56,21 +56,21 @@ export default function NewFarmer() {
             className="w-full"
           />
           <TextInput
-            label="Farmer's Physical Address"
+            label="Supplier Physical Address"
             name="physicalAddress"
             register={register}
             errors={errors}
             className="w-full"
           />
           <TextInput
-            label="Farmer's Contact Person"
+            label="Primary Contact"
             name="contactPerson"
             register={register}
             errors={errors}
             className="w-full"
           />
           <TextInput
-            label="Farmer's Contact Person Phone"
+            label="Primary Contact Phone"
             name="contactPersonPhone"
             type='tel'
             register={register}
@@ -78,7 +78,7 @@ export default function NewFarmer() {
             className="w-full"
           />
           <TextareaInput
-            label="Farmer's Payment Terms"
+            label="Supplier Payment Terms"
             name="terms"
             register={register}
             errors={errors}
@@ -93,8 +93,8 @@ export default function NewFarmer() {
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="Create Farmer"
-          loadingButtonTitle="Creating Farmer please wait ..."
+          buttonTitle="Create Supplier"
+          loadingButtonTitle="Creating supplier please wait ..."
         />
       </form>
     </div>

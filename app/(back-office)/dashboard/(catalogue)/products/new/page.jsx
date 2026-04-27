@@ -100,7 +100,7 @@ export default function NewProduct() {
             options={categories}
           />
           <SelectInput
-            label="Select Farmer"
+            label="Select Supplier"
             name="farmerId"
             register={register}
             errors={errors}

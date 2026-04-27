@@ -18,18 +18,18 @@ export default async function Farmers() {
   return (
     <div>
       <PageHeader
-        heading="Farmers"
+        heading="Suppliers"
         href="/dashboard/farmers/new"
-        linkTitle="Add farmer"
+        linkTitle="Add supplier"
         storefrontHref="/shop"
-        description="Supplier records attached to the live product catalog."
+        description="Supplier and procurement records attached to the live product catalog."
       />
       <TableActions
         storefrontHref="/shop"
-        summary="Farmer and supplier data ties inventory ownership back to the same storefront-visible catalog records."
+        summary="Supplier data ties inventory ownership, procurement context, and product sourcing back to the same storefront-visible catalog records."
       />
       <CatalogTable
-        title="Supplier records"
+        title="Supplier directory"
         columns={[
           { key: "name", label: "Name" },
           { key: "code", label: "Code" },
@@ -38,7 +38,7 @@ export default async function Farmers() {
           { key: "actions", label: "Actions" },
         ]}
         rows={rows}
-        emptyMessage="No farmers yet. Add supplier records to enrich your inventory data."
+        emptyMessage="No suppliers yet. Add supplier records to enrich your inventory data."
       />
     </div>
   );

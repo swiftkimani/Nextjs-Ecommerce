@@ -23,8 +23,8 @@ const config = {
   			xl: "1280px",
   		},
   		fontFamily: {
-  			bodyFont: ["DM Sans", "sans-serif"],
-  			titleFont: ["Poppins", "sans-serif"],
+  			bodyFont: ["var(--font-body)", "sans-serif"],
+  			titleFont: ["var(--font-title)", "sans-serif"],
   		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
