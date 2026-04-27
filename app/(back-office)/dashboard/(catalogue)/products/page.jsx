@@ -1,4 +1,4 @@
-import CatalogTable from "@/components/backOffice/CatalogTable";
+import CatalogTableWithEdit from "@/components/backOffice/CatalogTableWithEdit";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
 import { getDashboardSnapshot } from "@/lib/dashboard";
@@ -12,7 +12,6 @@ export default async function page() {
     price: `Ksh ${product.price}`,
     tags: Array.isArray(product.tags) ? product.tags.slice(0, 2).join(", ") || "None" : "None",
     previewHref: `/product/${product._id}`,
-    editHref: `/dashboard/products/update/${product._id}`,
   }));
 
   return (
@@ -28,7 +27,7 @@ export default async function page() {
         storefrontHref="/shop"
         summary="These products feed the homepage collections, search layer, shop listing, and product detail pages."
       />
-      <CatalogTable
+      <CatalogTableWithEdit
         title="Live product catalog"
         columns={[
           { key: "title", label: "Product" },
@@ -39,6 +38,9 @@ export default async function page() {
         ]}
         rows={rows}
         emptyMessage="No products yet. Add your first product to populate the storefront."
+        editFormType="product"
+        panelTitle="Edit Product"
+        panelDescription="Update pricing, category, supplier, and product details."
       />
     </div>
   );

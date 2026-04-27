@@ -1,4 +1,4 @@
-import CatalogTable from "@/components/backOffice/CatalogTable";
+import CatalogTableWithEdit from "@/components/backOffice/CatalogTableWithEdit";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
 import { getDashboardSnapshot } from "@/lib/dashboard";
@@ -12,7 +12,6 @@ export default async function page() {
     products: `${category.productCount ?? 0} products`,
     markets: Array.isArray(category.markets) ? category.markets.join(", ") || "No markets" : "No markets",
     previewHref: "/shop",
-    editHref: `/dashboard/categories/update/${category.id}`,
   }));
 
   return (
@@ -28,7 +27,7 @@ export default async function page() {
         storefrontHref="/shop"
         summary="Category records organize storefront browsing and feed the shop discovery experience."
       />
-      <CatalogTable
+      <CatalogTableWithEdit
         title="Live category structure"
         columns={[
           { key: "title", label: "Category" },
@@ -39,6 +38,9 @@ export default async function page() {
         ]}
         rows={rows}
         emptyMessage="No categories yet. Add categories to organize the storefront."
+        editFormType="category"
+        panelTitle="Edit Category"
+        panelDescription="Update title, description, markets, and image."
       />
     </div>
   );

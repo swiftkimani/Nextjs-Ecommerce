@@ -1,4 +1,4 @@
-import CatalogTable from "@/components/backOffice/CatalogTable";
+import CatalogTableWithEdit from "@/components/backOffice/CatalogTableWithEdit";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
 import { getDashboardSnapshot } from "@/lib/dashboard";
@@ -12,7 +12,6 @@ export default async function Coupons() {
     expiry: coupon.expiryDate?.slice(0, 10) || "No expiry",
     status: coupon.isActive ? "Active" : "Inactive",
     previewHref: "/offer",
-    editHref: `/dashboard/coupons/update/${coupon.id}`,
   }));
 
   return (
@@ -28,7 +27,7 @@ export default async function Coupons() {
         storefrontHref="/offer"
         summary="Coupon data is managed here and can support public promotions and campaign-led conversion flows."
       />
-      <CatalogTable
+      <CatalogTableWithEdit
         title="Promotions and coupons"
         columns={[
           { key: "title", label: "Coupon" },
@@ -39,6 +38,9 @@ export default async function Coupons() {
         ]}
         rows={rows}
         emptyMessage="No coupons yet. Add promotions to support storefront offers."
+        editFormType="coupon"
+        panelTitle="Edit Coupon"
+        panelDescription="Update coupon code, expiry date, and active status."
       />
     </div>
   );

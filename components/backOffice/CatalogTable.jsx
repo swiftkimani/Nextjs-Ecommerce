@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Pencil, ArrowUpRight } from "lucide-react";
 
@@ -38,7 +39,16 @@ export default function CatalogTable({ title, columns = [], rows = [], emptyMess
                               <ArrowUpRight className="h-3.5 w-3.5" />
                             </Link>
                           ) : null}
-                          {row.editHref ? (
+                          {row.onEdit ? (
+                            <button
+                              type="button"
+                              onClick={row.onEdit}
+                              className="inline-flex items-center gap-2 rounded-2xl bg-stone-950 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-50 transition hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-200"
+                            >
+                              <Pencil className="h-3.5 w-3.5" />
+                              Edit
+                            </button>
+                          ) : row.editHref ? (
                             <Link
                               href={row.editHref}
                               className="inline-flex items-center gap-2 rounded-2xl bg-stone-950 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-50 dark:bg-stone-100 dark:text-stone-950"

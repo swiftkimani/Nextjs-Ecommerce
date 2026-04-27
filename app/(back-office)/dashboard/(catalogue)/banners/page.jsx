@@ -1,4 +1,4 @@
-import CatalogTable from "@/components/backOffice/CatalogTable";
+import CatalogTableWithEdit from "@/components/backOffice/CatalogTableWithEdit";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
 import { getDashboardSnapshot } from "@/lib/dashboard";
@@ -12,7 +12,6 @@ export default async function page() {
     image: banner.imageUrl || "No image",
     placement: "Homepage promo",
     previewHref: "/",
-    editHref: `/dashboard/banners/update/${banner.id}`,
   }));
 
   return (
@@ -28,7 +27,7 @@ export default async function page() {
         storefrontHref="/"
         summary="Banner records are shared with the storefront marketing layer and homepage merchandising."
       />
-      <CatalogTable
+      <CatalogTableWithEdit
         title="Store banner inventory"
         columns={[
           { key: "title", label: "Banner" },
@@ -39,6 +38,9 @@ export default async function page() {
         ]}
         rows={rows}
         emptyMessage="No banners yet. Add banners to power homepage promotions."
+        editFormType="banner"
+        panelTitle="Edit Banner"
+        panelDescription="Update title, destination link, and hero image."
       />
     </div>
   );
