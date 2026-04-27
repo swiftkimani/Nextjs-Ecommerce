@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Market {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  description String?
+  logoUrl     String?
+  categories  Category[] @relation("MarketCategories")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  description String?
+  imageUrl    String?
+  markets     Market[]   @relation("MarketCategories")
+  products    Product[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Farmer {
+  id                 String    @id @default(cuid())
+  code               String    @unique
+  name               String
+  phone              String?
+  email              String?   @unique
+  physicalAddress    String?
+  contactPerson      String?
+  contactPersonPhone String?
+  terms              String?
+  notes              String?
+  products           Product[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Product {
+  id           String    @id @default(cuid())
+  title        String
+  slug         String    @unique
+  description  String?
+  imageUrl     String?
+  sku          String?   @unique
+  barcode      String?
+  productPrice Decimal   @db.Decimal(10, 2)
+  salePrice    Decimal?  @db.Decimal(10, 2)
+  tags         String[]
+  status       String    @default("ACTIVE")
+  isFeatured   Boolean   @default(false)
+  categoryId   String?
+  farmerId     String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  farmer       Farmer?   @relation(fields: [farmerId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([farmerId])
+}
+
+model Banner {
+  id          String   @id @default(cuid())
+  title       String
+  link        String
+  description String?
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Coupon {
+  id         String   @id @default(cuid())
+  title      String
+  couponCode String   @unique
+  expiryDate DateTime
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

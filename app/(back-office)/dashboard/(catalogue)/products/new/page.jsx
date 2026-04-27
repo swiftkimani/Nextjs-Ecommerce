@@ -8,75 +8,43 @@ import TextareaInput from '@/components/Forminput/TexrAreainput';
 import TextInput from '@/components/Forminput/Textinput';
 import { makePostRequest } from '@/lib/apiRequest';
 import { generateSlug } from '@/lib/generateSlug';
-import { Plus, X } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export default function NewProduct() {
-
-  const categories = [
-    {
-      id: 1,
-      title: "Category 1",
-    },
-    {
-      id: 2,
-      title: "Category 2",
-    },
-    {
-      id: 3,
-      title: "Category 3",
-    },
-    {
-      id: 4,
-      title: "Category 4",
-    },
-    {
-      id: 5,
-      title: "Category 5",
-    },
-  ];
-    const farmers = [
-      {
-        id: 1,
-        title: "Farmer 1",
-      },
-      {
-        id: 2,
-        title: "Farmer 2",
-      },
-      {
-        id: 3,
-        title: "Farmer 3",
-      },
-      {
-        id: 4,
-        title: "Farmer 4",
-      },
-      {
-        id: 5,
-        title: "Farmer 5",
-      },
-    ];
-// ------------Tags-------------
-
+  const [categories, setCategories] = useState([]);
+  const [farmers, setFarmers] = useState([]);
   const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
-      const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    async function loadOptions() {
+      const [categoriesRes, farmersRes] = await Promise.all([
+        fetch("/api/categories"),
+        fetch("/api/farmers"),
+      ]);
+      const [categoriesData, farmersData] = await Promise.all([
+        categoriesRes.json(),
+        farmersRes.json(),
+      ]);
+      setCategories(Array.isArray(categoriesData) ? categoriesData : []);
+      setFarmers(Array.isArray(farmersData) ? farmersData : []);
+    }
+
+    loadOptions();
+  }, []);
 
   async function onSubmit(data) {
-    
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
-    data.tags =tags
-    console.log(data)
+    data.tags = items
 
     makePostRequest(setLoading, "api/products", data, "Product", reset); 
 
     setImageUrl("")
-
   }
   return (
     <div>
@@ -153,7 +121,7 @@ export default function NewProduct() {
             errors={errors}
           />
           {/* tags */}
-          <Arrayitemsinput itemTitle="Tag" setItems={setItems} items={ items} />
+          <Arrayitemsinput itemTitle="Tag" setItems={setItems} items={items} />
         </div>
         <SubmitButton
           isLoading={loading}

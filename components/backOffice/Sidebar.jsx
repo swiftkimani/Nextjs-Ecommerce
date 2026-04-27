@@ -1,7 +1,5 @@
 "use client";
 import Link from "next/link";
-import logo from "../../public/logo.png";
-import Image from "next/image";
 import {
   Boxes,
   Building2,
@@ -11,11 +9,9 @@ import {
   ExternalLink,
   LayoutGrid,
   LayoutList,
-  LogOut,
   Monitor,
   MonitorPlay,
   ScanSearch,
-  SendToBack,
   Settings2,
   Slack,
   Truck,
@@ -64,7 +60,7 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
     {
       title: "Shanny Commnunity",
       icon: Building2,
-      href: "/dashboard/commnunity",
+      href: "/dashboard/community",
     },
     {
       title: "Wallet",
@@ -101,7 +97,7 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
     {
       title: "Store Banners",
       icon: MonitorPlay,
-      href: "/dashboard/sliders",
+      href: "/dashboard/banners",
     },
   ];
 
@@ -110,36 +106,48 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
     <div
       className={
         showSideBar
-          ? "sm:block mt-20 z-50 sm:mt-0 bg-white dark:bg-slate-700 text-slate-50 space-y-6 w-60 h-screen dark:text-slate-50 fixed left-0 top-0 shadow-md overflow-y-scroll"
-          : "hidden sm:block z-50 mt-20 sm:mt-0 bg-white dark:bg-slate-800 text-slate-800 space-y-6 w-60 h-screen dark:text-slate-100 fixed left-0 top-0 shadow-md overflow-y-scroll"
-      }>
-      {/* Logo */}
-      <Link className="px-6 py-4" href="/dashboard">
-        <Image
-          src={logo}
-          alt="logo"
-          className="w-32 hidden sm:block object-contain h-18 bg-blue-50 dark:bg-white px-10 py-2 ml-6 rounded-md"
-        />
+          ? "fixed left-0 top-0 z-50 h-screen w-72 overflow-y-auto border-r border-stone-800 bg-stone-950 text-stone-100 shadow-2xl"
+          : "fixed left-0 top-0 z-40 hidden h-screen w-72 overflow-y-auto border-r border-stone-800 bg-stone-950 text-stone-100 shadow-2xl sm:block"
+      }
+    >
+      <Link className="block px-6 pb-6 pt-8" href="/dashboard">
+        <div className="rounded-[1.8rem] border border-stone-800 bg-stone-900/80 p-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f1b84b] text-sm font-bold uppercase tracking-[0.3em] text-stone-950">
+              SS
+            </div>
+            <div>
+              <p className="font-titleFont text-lg font-semibold tracking-[0.18em] text-stone-50">
+                SHANNY
+              </p>
+              <p className="text-xs uppercase tracking-[0.28em] text-stone-400">
+                Admin suite
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm leading-6 text-stone-400">
+            Shared storefront and back-office control for your live catalog.
+          </p>
+        </div>
       </Link>
 
-      <div className="space-y-3 flex flex-col">
+      <div className="flex flex-col space-y-2 px-4 pb-8">
         <Link
           onClick={() => setShowSideBar(false)}
           href="/dashboard"
           className={
             pathName === "/dashboard"
-              ? "flex items-center space-x-3 px-6 py-2 border-l-8 border-blue-200 text-blue-400"
-              : "flex items-center space-x-3 px-6 py-2"
-          }>
+              ? "flex items-center space-x-3 rounded-2xl bg-white/10 px-5 py-3 text-[#f1b84b]"
+              : "flex items-center space-x-3 rounded-2xl px-5 py-3 text-stone-300 transition hover:bg-white/5 hover:text-stone-50"
+          }
+        >
           <LayoutGrid />
           <span>Dashboard</span>
         </Link>
 
-        <Collapsible className="px-6 py-2">
-          <CollapsibleTrigger
-            className=""
-            onClick={() => setOpenMenu(!openMenu)}>
-            <div className="flex items-center space-x-1 py-2">
+        <Collapsible className="px-1 py-2">
+          <CollapsibleTrigger className="w-full" onClick={() => setOpenMenu(!openMenu)}>
+            <div className="flex items-center justify-between rounded-2xl px-4 py-3 text-stone-300 transition hover:bg-white/5 hover:text-stone-50">
               <div className="flex items-center space-x-3">
                 <Slack />
                 <span>Catalogue</span>
@@ -147,7 +155,7 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
               {openMenu ? <ChevronRight /> : <ChevronDown />}
             </div>
           </CollapsibleTrigger>
-          <CollapsibleContent className="px-3 pl-6 bg-slate-700 rounded py-3">
+          <CollapsibleContent className="mt-2 rounded-2xl border border-stone-800 bg-stone-900/70 px-4 py-3">
             {CatalogueLinks.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -157,9 +165,10 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
                   href={item.href}
                   className={
                     pathName === item.href
-                      ? "flex items-center space-x-3 text-sm border-blue-200 text-blue-400"
-                      : "flex items-center space-x-3 text-slate-50 py-2"
-                  }>
+                      ? "flex items-center space-x-3 rounded-xl px-3 py-2 text-sm text-[#f1b84b]"
+                      : "flex items-center space-x-3 rounded-xl px-3 py-2 text-sm text-stone-300 transition hover:bg-white/5 hover:text-stone-50"
+                  }
+                >
                   <Icon className="w-4 h-4" />
                   <span>{item.title}</span>
                 </Link>
@@ -177,19 +186,23 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
               href={item.href}
               className={
                 item.href == pathName
-                  ? "flex items-center space-x-3 px-6 py-2 border-l-8 border-blue-200 text-blue-400"
-                  : "flex items-center space-x-3 px-6 py-2"
-              }>
+                  ? "flex items-center space-x-3 rounded-2xl bg-white/10 px-5 py-3 text-[#f1b84b]"
+                  : "flex items-center space-x-3 rounded-2xl px-5 py-3 text-stone-300 transition hover:bg-white/5 hover:text-stone-50"
+              }
+            >
               <Icon />
               <span>{item.title}</span>
             </Link>
           );
         })}
-        <div className="px-6 py-2">
-          <button className="flex items-center space-x-3 px-6 py-3 bg-blue-600 rounded-md mt-4 sm:mt-6 text-sm font-medium text-center text-white focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-            <LogOut />
-            <span>LogOut</span>
-          </button>
+        <div className="px-1 pt-4">
+          <Link
+            href="/"
+            className="flex items-center justify-between rounded-2xl border border-stone-800 bg-stone-900/80 px-5 py-4 text-sm font-medium text-stone-200 transition hover:border-stone-700 hover:text-stone-50"
+          >
+            <span>Open storefront</span>
+            <ExternalLink className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </div>

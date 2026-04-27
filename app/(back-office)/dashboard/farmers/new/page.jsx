@@ -12,23 +12,17 @@ import { useForm } from 'react-hook-form';
 
 export default function NewFarmer() {
   const [loading, setLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState()
-
   const {
     register,
     reset,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
 
   async function onSubmit(data) {
-
     const code = generateUserCode( "SHT", data.name);
     data.code = code;
-    console.log(data);
-
     makePostRequest(setLoading, "api/farmers", data, "Farmer", reset);
   }
   return (

@@ -12,23 +12,17 @@ import { useForm } from 'react-hook-form';
 
 export default function NewCoupon() {
   const [loading, setLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState()
-
   const {
     register,
     reset,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
 
   async function onSubmit(data) {
-
     const couponCode = generateCouponCode(data.title, data.expiryDate);
     data.couponCode = couponCode;
-    console.log(data);
-
     makePostRequest(setLoading, "api/coupons", data, "Coupon", reset);
   }
   return (

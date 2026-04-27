@@ -6,19 +6,13 @@ import Sidebar from "@/components/backOffice/Sidebar";
 export default function Layout({ children }) {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <div className="">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(244,238,228,0.92)_32%,_#ebe4d7_100%)]">
+      <div>
         <Sidebar setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
       </div>
-
-      {/* Main Body */}
-      <div className="flex-grow bg-slate-100 dark:bg-slate-900">
-        {/* Header */}
+      <div className="min-h-screen sm:pl-72">
         <Navbar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
-
-        {/* Main */}
-        <main className="p-8 sm:ml-60 mt-16 bg-slate-100 dark:bg-slate-900 text-slate-50 min-h-screen">
+        <main className="px-4 pb-10 pt-28 md:px-8">
           {children}
         </main>
       </div>

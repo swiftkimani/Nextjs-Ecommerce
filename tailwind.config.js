@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { withUt } from "uploadthing/tw";
-
-export default withUt({
+const config = {
 
     darkMode: ["class"],
     content: [
@@ -11,6 +9,23 @@ export default withUt({
   ],
   theme: {
   	extend: {
+  		maxWidth: {
+  			container: "1440px",
+  		},
+  		screens: {
+  			xs: "320px",
+  			sm: "375px",
+  			sml: "500px",
+  			md: "667px",
+  			mdl: "768px",
+  			lg: "960px",
+  			lgl: "1024px",
+  			xl: "1280px",
+  		},
+  		fontFamily: {
+  			bodyFont: ["DM Sans", "sans-serif"],
+  			titleFont: ["Poppins", "sans-serif"],
+  		},
   		backgroundImage: {
   			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
@@ -21,6 +36,8 @@ export default withUt({
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			primeColor: "#262626",
+  			lightText: "#6D6D6D",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -61,11 +78,15 @@ export default withUt({
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+  		boxShadow: {
+  			testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",
+  		},
   	}
   },
-	plugins: [require("tailwindcss-animate"), require
-		("@tailwindcss/forms")]
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")]
 
 
-});
+};
+
+export default config;

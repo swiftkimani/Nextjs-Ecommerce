@@ -1,12 +1,7 @@
 import {
-  Sun,
   Bell,
-  User,
   AlignJustify,
-  LayoutDashboard,
-  Settings,
-  LogOut,
-  X,
+  ArrowUpRight,
 } from "lucide-react";
 import Image from "next/image";
 import {
@@ -19,39 +14,47 @@ import {
 } from "@/components/ui/dropdown-menu";
 import ThemeSwitcherBtn from "../ThemeSwitcher";
 import Link from "next/link";
-import logo from "../../public/logo.png"
+import logo from "../../public/logo.png";
 
 export default function Navbar({ setShowSideBar, showSideBar }) {
   return (
     <div
-      className="flex items-center justify-between bg-white dark:bg-slate-800 text-slate-50
-      h-20 px-8 py-8 fixed top-0 w-full sm:left-60 left-0 sm:pr-[20rem] z-50">
-      {/* Icons */}
+      className="fixed left-0 right-0 top-0 z-40 flex h-24 items-center justify-between border-b border-stone-200/70 bg-[rgba(247,243,236,0.82)] px-4 backdrop-blur-xl sm:left-72 sm:px-8"
+    >
       <button
         onClick={() => setShowSideBar(!showSideBar)}
-        className="text-blue-600 dark:text-blue-50">
+        className="rounded-full border border-stone-300 bg-white/80 p-3 text-stone-800"
+      >
         <AlignJustify />
       </button>
-      <Link className="px-0 py-2" href="/dashboard">
-        <Image
-          src={logo}
-          alt="logo"
-          className="w-12 block sm:hidden object-contain h-10 bg-blue-50 dark:bg-white px-2 py-1 rounded-md"
-        />
-      </Link>
+      <div className="hidden flex-1 px-6 sm:block">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">
+          Shanny Commerce House
+        </p>
+        <p className="mt-1 font-titleFont text-xl font-semibold text-stone-950">
+          Frontend-connected dashboard
+        </p>
+      </div>
 
-      {/* 3Icons */}
-      <div className="flex space-x-3">
+      <div className="flex items-center space-x-3">
+        <Link
+          href="/"
+          className="hidden items-center gap-2 rounded-full border border-stone-300 bg-white/80 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-700 sm:inline-flex"
+        >
+          Storefront
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
         <ThemeSwitcherBtn></ThemeSwitcherBtn>
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div
               type="button"
-              className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-transparent rounded-lg">
-              <Bell className="text-blue-600 dark:text-blue-50" />
+              className="relative inline-flex items-center rounded-full border border-stone-300 bg-white/80 p-3 text-sm font-medium text-center text-stone-800"
+            >
+              <Bell className="text-stone-700" />
               <span className="sr-only">Notifications</span>
-              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-none rounded-full -top-0 end-6 dark:border-gray-900">
-                20
+              <div className="absolute -right-1 top-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#f1b84b] text-[10px] font-bold text-stone-950">
+                4
               </div>
             </div>
           </DropdownMenuTrigger>
@@ -59,92 +62,43 @@ export default function Navbar({ setShowSideBar, showSideBar }) {
             <DropdownMenuLabel>Notifications</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <div className="flex items-center space-x-2">
-                <LayoutDashboard className="mr-2 h-4 w-4" />
-                <span>Dashboard</span>
+              <div className="flex flex-col space-y-1 py-1">
+                <span className="text-sm font-medium">Catalog is live-linked to storefront</span>
+                <span className="text-xs text-stone-500">Products, banners, and coupons now share one source.</span>
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/profile.jpg"
-                  alt="profile.jpg"
-                  width={200}
-                  height={200}
-                  className="w-8 h-8 rounded-full cursor-pointer"
-                />
-                <div className="flex flex-col space-y-1">
-                  <p>Lorem ipsum dolor sit.</p>
-                  <div className="flex items-center space-x-2">
-                    <p className="px-3 py-0.5 bg-red-700 text-white rounded-full">
-                      Stock Out
-                    </p>
-                    <p>Dec 12 2021 - 12:40PM</p>
-                  </div>
-                </div>
-                <button>
-                  <X />
-                </button>
+              <div className="flex flex-col space-y-1 py-1">
+                <span className="text-sm font-medium">Use /dashboard to manage storefront content</span>
+                <span className="text-xs text-stone-500">Banners and categories now map directly to public pages.</span>
               </div>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-
             <DropdownMenuItem>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/profile.jpg"
-                  alt="profile.jpg"
-                  width={200}
-                  height={200}
-                  className="w-8 h-8 rounded-full cursor-pointer"
-                />
-                <div className="flex flex-col space-y-1">
-                  <p>Lorem ipsum dolor sit.</p>
-                  <div className="flex items-center space-x-2">
-                    <p className="px-3 py-0.5 bg-green-700 text-white rounded-full">
-                      Stock Out
-                    </p>
-                    <p>Dec 12 2021 - 12:40PM</p>
-                  </div>
-                </div>
-                <button>
-                  <X />
-                </button>
+              <div className="flex flex-col space-y-1 py-1">
+                <span className="text-sm font-medium">Theme toggle is active</span>
+                <span className="text-xs text-stone-500">You can preview light and dark admin surfaces.</span>
               </div>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Image
-              src="/profile.jpg"
-              alt="profile.jpg"
-              width={200}
-              height={200}
-              className="w-8 h-8 rounded-full cursor-pointer"
-            />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-stone-950 text-sm font-bold text-stone-50">
+              SS
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="px-4 py-2">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <LayoutDashboard className="mr-2 h-4 w-4" />
-                <span>Dashboard</span>
-              </button>
+              <Link href="/dashboard" className="flex items-center space-x-2">
+                <span>Dashboard home</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Edit</span>
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Logout</span>
-              </button>
+              <Link href="/" className="flex items-center space-x-2">
+                <span>Open storefront</span>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

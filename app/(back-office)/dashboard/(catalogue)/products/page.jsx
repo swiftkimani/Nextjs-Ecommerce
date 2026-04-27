@@ -1,23 +1,45 @@
-import Heading from "@/components/backOffice/Heading";
+import CatalogTable from "@/components/backOffice/CatalogTable";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
-import React from "react";
+import { getDashboardSnapshot } from "@/lib/dashboard";
 
-export default function page() {
+export default async function page() {
+  const { catalog } = await getDashboardSnapshot();
+  const rows = catalog.products.map((product) => ({
+    id: product._id,
+    title: product.productName,
+    category: product.category,
+    price: `Ksh ${product.price}`,
+    tags: Array.isArray(product.tags) ? product.tags.slice(0, 2).join(", ") || "None" : "None",
+    previewHref: `/product/${product._id}`,
+    editHref: `/dashboard/products/update/${product._id}`,
+  }));
+
   return (
     <div>
       <PageHeader
         heading="Products"
         href="/dashboard/products/new"
-        linkTitle="Add Products"
+        linkTitle="Add product"
+        storefrontHref="/shop"
+        description="Live product records powering storefront shelves, search, and detail pages."
       />
-      {/* Table Actions */}
-
-      <TableActions/>
-
-      <div className="py-8">
-        <h2>Table</h2>
-      </div>
+      <TableActions
+        storefrontHref="/shop"
+        summary="These products feed the homepage collections, search layer, shop listing, and product detail pages."
+      />
+      <CatalogTable
+        title="Live product catalog"
+        columns={[
+          { key: "title", label: "Product" },
+          { key: "category", label: "Category" },
+          { key: "price", label: "Price" },
+          { key: "tags", label: "Tags" },
+          { key: "actions", label: "Actions" },
+        ]}
+        rows={rows}
+        emptyMessage="No products yet. Add your first product to populate the storefront."
+      />
     </div>
   );
 }

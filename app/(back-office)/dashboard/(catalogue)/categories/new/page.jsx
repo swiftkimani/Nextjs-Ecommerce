@@ -7,49 +7,32 @@ import TextareaInput from '@/components/Forminput/TexrAreainput';
 import TextInput from '@/components/Forminput/Textinput';
 import { makePostRequest } from '@/lib/apiRequest';
 import { generateSlug } from '@/lib/generateSlug';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export default function NewCategory() {
-
-  const markets = [
-    {
-      id: 1,
-      title: "headphones Market",
-    },
-    {
-      id: 2,
-      title: "PowerBanks Market",
-    },
-    {
-      id: 3,
-      title: "Sunglasses Market",
-    },
-    {
-      id: 4,
-      title: "electronics Market",
-    },
-    {
-      id: 5,
-      title: "Chargers Market",
-    },
-  ];
-
+  const [markets, setMarkets] = useState([]);
   const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
+
+  useEffect(() => {
+    async function loadMarkets() {
+      const response = await fetch("/api/markets");
+      const data = await response.json();
+      setMarkets(Array.isArray(data) ? data : []);
+    }
+
+    loadMarkets();
+  }, []);
   
   async function onSubmit(data) {
-    
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
-    console.log(data)
 
     makePostRequest(setLoading, "api/categories", data, "Category", reset); 
-
     setImageUrl("")
-
   }
   return (
     <div>

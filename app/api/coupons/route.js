@@ -1,16 +1,36 @@
-import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { json, requireDatabase } from "@/lib/api";
+import { getCatalogSnapshot } from "@/lib/catalog";
+
+export async function GET() {
+  const catalog = await getCatalogSnapshot();
+  return json(catalog.coupons);
+}
 
 export async function POST(request) {
-    try {
-        const { title, couponCode, expiryDate} = await request.json()
-        const newCoupon = { title, couponCode, expiryDate };
-        console.log(newCoupon)
-        return NextResponse.json(newCoupon)
-    } catch (error) {
-        console.log(error)
-        return NextResponse.json({
-            message: "Failed to create category",
-            error
-        },{status:500})
-    }
+  const dbError = requireDatabase();
+  if (dbError) return dbError;
+
+  try {
+    const body = await request.json();
+
+    const coupon = await prisma.coupon.create({
+      data: {
+        title: body.title,
+        couponCode: body.couponCode,
+        expiryDate: new Date(body.expiryDate),
+      },
+    });
+
+    return json(coupon, { status: 201 });
+  } catch (error) {
+    console.error(error);
+    return json(
+      {
+        message: "Failed to create coupon",
+        error: error.message,
+      },
+      { status: 500 }
+    );
+  }
 }

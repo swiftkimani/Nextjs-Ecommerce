@@ -1,23 +1,45 @@
-import Heading from "@/components/backOffice/Heading";
+import CatalogTable from "@/components/backOffice/CatalogTable";
 import PageHeader from "@/components/backOffice/PageHeader";
 import TableActions from "@/components/backOffice/TableActions";
-import React from "react";
+import { getDashboardSnapshot } from "@/lib/dashboard";
 
-export default function page() {
+export default async function page() {
+  const { catalog } = await getDashboardSnapshot();
+  const rows = catalog.banners.map((banner) => ({
+    id: banner.id,
+    title: banner.title,
+    link: banner.link,
+    image: banner.imageUrl || "No image",
+    placement: "Homepage promo",
+    previewHref: "/",
+    editHref: `/dashboard/banners/update/${banner.id}`,
+  }));
+
   return (
     <div>
       <PageHeader
         heading="Banners"
         href="/dashboard/banners/new"
-        linkTitle="Add Banner"
+        linkTitle="Add banner"
+        storefrontHref="/"
+        description="Hero and promotional visuals exposed to the public storefront."
       />
-      {/* Table Actions */}
-
-      <TableActions />
-
-      <div className="py-8">
-        <h2>Table</h2>
-      </div>
+      <TableActions
+        storefrontHref="/"
+        summary="Banner records are shared with the storefront marketing layer and homepage merchandising."
+      />
+      <CatalogTable
+        title="Store banner inventory"
+        columns={[
+          { key: "title", label: "Banner" },
+          { key: "link", label: "Link target" },
+          { key: "image", label: "Image source" },
+          { key: "placement", label: "Placement" },
+          { key: "actions", label: "Actions" },
+        ]}
+        rows={rows}
+        emptyMessage="No banners yet. Add banners to power homepage promotions."
+      />
     </div>
   );
 }

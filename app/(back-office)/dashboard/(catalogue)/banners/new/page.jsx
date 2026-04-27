@@ -17,16 +17,13 @@ export default function NewCategory() {
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
   
   async function onSubmit(data) {
-    
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
-    console.log(data)
 
     makePostRequest(setLoading, "api/banners", data, "Banner", reset); 
 
     setImageUrl("")
-
   }
   return (
     <div>
