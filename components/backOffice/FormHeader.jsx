@@ -1,15 +1,14 @@
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import React from 'react'
 
-export default function FormHeader({ title }) {
+export default function FormHeader({ title, eyebrow = "Back office" }) {
     const router = useRouter()
     return (
       <div className="mb-8">
         <div className="flex items-center justify-between rounded-[1.75rem] border border-stone-200/80 bg-white/90 px-6 py-5 text-stone-700 shadow-[0_22px_70px_-48px_rgba(28,25,23,0.45)] dark:border-stone-800 dark:bg-stone-950/70 dark:text-stone-50 md:px-8">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
-              Banner workspace
+              {eyebrow}
             </p>
             <h2 className="mt-2 font-titleFont text-2xl font-semibold tracking-[-0.04em]">{title}</h2>
           </div>

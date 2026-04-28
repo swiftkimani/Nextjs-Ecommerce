@@ -1,5 +1,4 @@
 import { Plus } from "lucide-react";
-import React from "react";
 
 export default function SubmitButton({ isLoading=false , buttonTitle, loadingButtonTitle }) {
   return (

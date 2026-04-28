@@ -2,7 +2,6 @@
 import { UploadDropzone } from "@/lib/uploadthing";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 import toast from "react-hot-toast";
 
 export default function ImageInput({
@@ -43,15 +42,10 @@ export default function ImageInput({
             endpoint={endpoint}
             onClientUploadComplete={(res) => {
               setImageUrl(res[0].url);
-              // Do something with the response
-              toast.success("Image uploaded sucessfully");
-              console.log("Files: ", res);
-              console.log("Upload Completed");
+              toast.success("Image uploaded successfully");
             }}
-            onUploadError={(error) => {
-              // Do something with the error.
-              toast.error("Try again Image upload failed");
-              console.log(`ERROR! ${error.message}`,error);
+            onUploadError={() => {
+              toast.error("Image upload failed, please try again");
             }}
           />
         )}

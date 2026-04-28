@@ -1,4 +1,3 @@
-import React from 'react'
 import WeeklySalesChart from './WeeklySalesChart'
 import BestSellingProductsCharts from './BestSellingProductsCharts'
 

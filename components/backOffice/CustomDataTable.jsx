@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import data from "../../data.json";
 
 export default function CustomDataTable() {
@@ -11,7 +11,7 @@ export default function CustomDataTable() {
   const endIndex = startIndex + pageSize;
   const currentDisplayedData = data.slice(startIndex, endIndex);
   const totalPages = Math.ceil(data.length / pageSize);
-  const itemSatrtIndex = startIndex + 1;
+  const itemStartIndex = startIndex + 1;
   const itemEndIndex = Math.min(startIndex + pageSize, data.length);
   return (
     <div className="mt-8">

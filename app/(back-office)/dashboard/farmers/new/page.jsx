@@ -7,7 +7,7 @@ import TextInput from '@/components/Forminput/Textinput';
 import { makePostRequest } from '@/lib/apiRequest';
 import { generateUserCode } from "@/lib/generateUserCode";
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export default function NewFarmer() {

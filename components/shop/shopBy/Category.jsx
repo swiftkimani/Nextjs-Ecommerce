@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { ImPlus } from "react-icons/im";
 import NavTitle from "./NavTitle";
 
@@ -11,7 +10,6 @@ const fallbackItems = [
 ];
 
 const Category = ({ categories = fallbackItems }) => {
-  const [showSubCat, setShowSubCat] = useState(false);
   const items = categories.length ? categories : fallbackItems;
 
   return (
@@ -28,8 +26,7 @@ const Category = ({ categories = fallbackItems }) => {
               <span className="text-xs text-lightText">{productCount}</span>
             ) : (
               <span
-                onClick={() => setShowSubCat(!showSubCat)}
-                className="text-[10px] lg:text-xs cursor-pointer text-gray-400 hover:text-primeColor duration-300"
+                className="text-[10px] lg:text-xs text-gray-400"
               >
                 <ImPlus />
               </span>

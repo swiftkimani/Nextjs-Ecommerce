@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   Boxes,
   Building2,
-  CircleHelp,
   ChevronDown,
   ChevronRight,
   CircleDollarSign,
@@ -16,7 +15,6 @@ import {
   Slack,
   Truck,
   User,
-  User2,
   Users2,
   UserSquare2,
   Warehouse,
@@ -71,16 +69,6 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
       title: "Settings",
       icon: Settings2,
       href: "/dashboard/settings",
-    },
-    {
-      title: "Help Center",
-      icon: CircleHelp,
-      href: "/dashboard/settings",
-    },
-    {
-      title: "Online Store",
-      icon: ExternalLink,
-      href: "/",
     },
   ];
   const CatalogueLinks = [
@@ -146,8 +134,8 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
           <span>Dashboard</span>
         </Link>
 
-        <Collapsible className="px-1 py-1">
-          <CollapsibleTrigger className="w-full" onClick={() => setOpenMenu(!openMenu)}>
+        <Collapsible open={openMenu} onOpenChange={setOpenMenu} className="px-1 py-1">
+          <CollapsibleTrigger className="w-full">
             <div className="flex items-center justify-between rounded-2xl px-3 py-3 text-stone-600 transition hover:bg-stone-100 hover:text-stone-950 dark:text-stone-300 dark:hover:bg-white/5 dark:hover:text-stone-50">
               <div className="flex items-center space-x-3">
                 <Slack />

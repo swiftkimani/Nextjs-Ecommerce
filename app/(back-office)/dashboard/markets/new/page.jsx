@@ -6,7 +6,7 @@ import TextareaInput from '@/components/Forminput/TexrAreainput';
 import TextInput from '@/components/Forminput/Textinput';
 import { makePostRequest } from '@/lib/apiRequest';
 import { generateSlug } from '@/lib/generateSlug';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export default function NewCategory() {

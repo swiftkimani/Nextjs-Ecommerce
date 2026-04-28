@@ -7,7 +7,7 @@ import TextInput from '@/components/Forminput/Textinput';
 import { makePostRequest } from '@/lib/apiRequest';
 import { generateCouponCode } from "@/lib/generateCouponCode";
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 export default function NewCoupon() {
