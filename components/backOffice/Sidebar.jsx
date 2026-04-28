@@ -12,7 +12,7 @@ import {
   MonitorPlay,
   ScanSearch,
   Settings2,
-  Slack,
+  Package,
   Truck,
   User,
   Users2,
@@ -138,7 +138,7 @@ export default function Sidebar({ showSideBar, setShowSideBar }) {
           <CollapsibleTrigger className="w-full">
             <div className="flex items-center justify-between rounded-2xl px-3 py-3 text-stone-600 transition hover:bg-stone-100 hover:text-stone-950 dark:text-stone-300 dark:hover:bg-white/5 dark:hover:text-stone-50">
               <div className="flex items-center space-x-3">
-                <Slack />
+                <Package />
                 <span>Catalog</span>
               </div>
               {openMenu ? <ChevronDown /> : <ChevronRight />}
